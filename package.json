@@ -2,10 +2,11 @@
   "name": "p5-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html --public-url ./"
+    "build": "parcel build index.html --public-url ./",
+    "deploy": "gh-pages -d dist",
+    "gh": "pnpm build && pnpm run deploy"
   },
   "keywords": [],
   "author": "Allie Howe",
