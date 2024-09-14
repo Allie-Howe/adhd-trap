@@ -20,6 +20,11 @@ const colours = [
   'rgb(190, 179, 255)',
   'rgb(255, 199, 255)',
 ]
+const audios = range(colours.length).map(i => {
+  const a = new Audio()
+  a.src = new URL('../assets/click.mp3', import.meta.url).toString()
+  return a
+})
 
 const sketch = (p5: P5) => {
   p5.windowResized = () => {
@@ -40,7 +45,13 @@ const sketch = (p5: P5) => {
     p5.translate(p5.width / 2, p5.height / 2)
 
     range(colours.length).forEach(i => {
-      drawCircle(p5, colours[i], INITIAL_DIAMETER * (i + 1), INITIAL_SPEED * ((i + 1) * SPEED_MODIFIER))
+      drawCircle(
+        p5,
+        colours[i],
+        INITIAL_DIAMETER * (i + 1),
+        INITIAL_SPEED * ((i + 1) * SPEED_MODIFIER),
+        audios[i]
+      )
     })
   }
 }
@@ -48,7 +59,7 @@ const sketch = (p5: P5) => {
 new P5(sketch)
 
 
-function drawCircle(p5: P5, colour: string, diameter: number, speed: number) {
+function drawCircle(p5: P5, colour: string, diameter: number, speed: number, audio: HTMLAudioElement) {
   p5.circle(0, 0, diameter)
 
 
@@ -64,7 +75,7 @@ function drawCircle(p5: P5, colour: string, diameter: number, speed: number) {
   p5.stroke(colour);
   p5.fill(colour);
   p5.circle(0, 0, size)
+  if (basicallyAtTop) audio.play()
 
   p5.pop()
-
 }
