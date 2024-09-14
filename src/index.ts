@@ -28,7 +28,7 @@ const sketch = (p5: P5) => {
 
   p5.setup = () => {
     p5.createCanvas(window.innerWidth, window.innerHeight)
-    p5.frameRate(60)
+    p5.pixelDensity(1)
 
     p5.stroke(200)
     p5.noFill()
